@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
 
   def show
+    @enhanced_cart ||= Product.where(id: cart.keys).map {|product| { product:product, quantity: cart[product.id.to_s] } }
   end
 
   def add_item
