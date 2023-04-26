@@ -1,2 +1,18 @@
-<h1>Admin::Dashboard#show</h1>
-<p>Find me in app/views/admin/dashboard/show.html.erb</p>
+<h5> <%= render template: 'admin/products/index', products: @products %> </h5>
+<br>
+<div class="panel panel-default products">
+  <table class="table table-bordered">
+    <thead>
+      <h4>We have <%= @count %> categories </h4>
+      <tr>
+        <th>Category ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.sort.each do |each| %>  
+        <%= render 'category', category: each%>
+      <% end %>
+    </tbody>
+  </table>
+</div>
