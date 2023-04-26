@@ -31,4 +31,35 @@ class ApplicationController < ActionController::Base
     }
     cookies[:cart]
   end
+
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+
+  def current_user #look up the user, if they're logged in, and save their user object to a variable called @current_user. 
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :current_user #The helper_method allows us to use @current_user in our view files.
+
+  def authorize #send someone to the login page if they aren't logged in - this is how we keep certain pages our site secure... users have to login before seeing them.
+    redirect_to '/login' unless current_user
+  end
 end
+
+=begin
+* User authentication:
+  Add a 'before_filter' to any controller that you want to secure. This will force users to login before they can see the actions in this controller. 
+e.g.
+class GifController < ApplicationController
+
+  before_filter :authorize
+
+  def cool
+  end
+
+  def free
+  end
+
+end
+=end
+
