@@ -42,6 +42,15 @@
           <%# </ul>
         </li> %>
       </ul>
+      
+      <ul class="nav-item dropdown">
+        <% if current_user %>
+          Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+        <% else %>
+          <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+        <% end %>
+      </ul>
+
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a

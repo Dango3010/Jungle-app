@@ -32,8 +32,7 @@ class ApplicationController < ActionController::Base
     cookies[:cart]
   end
 
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+  # Prevent CSRF attacks by raising an exception. For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   def current_user #look up the user, if they're logged in, and save their user object to a variable called @current_user. 
