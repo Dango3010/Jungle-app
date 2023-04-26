@@ -1,7 +1,16 @@
 class Admin::ProductsController < ApplicationController
+  before_action :authenticate
 
   def index
     @products = Product.order(id: :desc).all
+  end
+
+  private
+
+  def authenticate
+    authenticate_or_request_with_http_basic("Only Admin is allowed to access") do |username, password|
+      username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASS']
+    end
   end
 
   def new
