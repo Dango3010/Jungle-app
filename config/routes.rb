@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
+    resources :categories, except: [:edit, :update, :show]
   end
     
    # these routes are for showing users a login form, logging them in, and logging them out.
